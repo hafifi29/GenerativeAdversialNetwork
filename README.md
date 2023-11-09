@@ -17,3 +17,18 @@ The discriminator generates a score for each image that passes through it. The l
 
 ![the generator takes the loss from the discriminator to update its own weigths.](https://github.com/hafifi29/GenerativeAdversialNetwork/assets/89405591/b420f783-7c83-4c2f-9e59-2a221c4a21a3)
 
+## The training process
+The key to understanding GANs lies in understanding the training process. As we said before, the loss of the discriminator is the binary cross-entropy between the real and fake observations, with 1 for real and 0 for fake. and the loss for the generator is the binary cross-entropy between a vector of ones and the loss of the fake observation from the discriminator. Crucially, we must alternate the training process between the two networks and make sure to update the weights of the networks one at a time.
+
+### Training Challenges
+* Discriminator overpowers the generator
+  If the discriminator becomes too powerful, the loss signal that goes to the generator becomes too weak to add much change to the generator weights. In the worst scenario, the discriminator becomes perfect at separating the observations, and the gradient vanishes completely, leading to no learning.
+  
+  how to weaken the discriminator
+  1. increase the dropout rate
+  2. reduce the learning ate of the discriminator
+  3. add noise to the training labels of the discriminator
+* Generator overpowers the discriminator
+  If the discriminator is weak, the generator will find a way to trick the discriminator with a small sample of identical observations called the mode collapse. The generator will find a way to map every input to the mode without generating observations, and the gradient can collapse to near zero.To strengthen the discriminator, we use the opposite of the suggestions listed in the preceding part.
+
+  
