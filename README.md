@@ -22,13 +22,16 @@ The key to understanding GANs lies in understanding the training process. As we 
 
 ### Training Challenges
 * Discriminator overpowers the generator
+  
   If the discriminator becomes too powerful, the loss signal that goes to the generator becomes too weak to add much change to the generator weights. In the worst scenario, the discriminator becomes perfect at separating the observations, and the gradient vanishes completely, leading to no learning.
   
   how to weaken the discriminator
   1. increase the dropout rate
   2. reduce the learning ate of the discriminator
   3. add noise to the training labels of the discriminator
+     
 * Generator overpowers the discriminator
+  
   If the discriminator is weak, the generator will find a way to trick the discriminator with a small sample of identical observations called the mode collapse. The generator will find a way to map every input to the mode without generating observations, and the gradient can collapse to near zero.To strengthen the discriminator, we use the opposite of the suggestions listed in the preceding part.
 
   
